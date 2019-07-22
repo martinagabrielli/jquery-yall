@@ -1,9 +1,9 @@
 $(document).ready(function () {
-
+    // ADDING AND REMOVING CONTENT TO OR FROM A PAGE WITH A MOUSE CLICK
     $('#content-link').click(function() {
         $('#content').toggle();
     });
-
+    // CREATING A TOOLTIP THAT SHOWS CONTENT DURING THE HOVER EVENT
     $('.product-image img').bind({
         mouseenter : function() {
             var toolTip = $ (this).attr("title");
@@ -13,7 +13,7 @@ $(document).ready(function () {
             $('p.toolTip').hide();
         }
     });
-
+    // CREATING BASIC ADD TO CART FUNCTIONALITY WITH MOUSEDOWN AND MOUSEUP EVENTS
     $('.product').bind({
         mousedown : function() {
             $(this).css('border','3px solid red');
@@ -25,9 +25,13 @@ $(document).ready(function () {
             $(this).hide();
         }
     });
-
+    // CREATING A ROLLOVER EFFECT ON AN IMAGE
     $('.compass').hover(
         function() {$(this).attr('src', 'img/compass.png');},
         function() {$(this).attr('src', 'img/compass-bw.png');}
         );
+    // ADDING A BORDER TO A FORM FIELD WHEN THE USER ADDS FOCUS
+    $('first-name').bind('focus', function(){
+        $(this).css('border', '1px solid red');
+    });
 });
