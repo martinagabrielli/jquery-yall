@@ -1,0 +1,45 @@
+#content {
+  display: none;
+}
+
+.recipe {
+  display: none;
+}
+
+body {
+  font-family: arial;
+}
+
+body ul#nav {
+  list-style-type: none;
+  margin: 10px 0 10px;
+  padding: 0;
+}
+
+body ul#nav ul#nav li {
+  float: left;
+  width: 30px;
+}
+
+body ul#nav ul#nav li ul#nav li a {
+  text-decoration: none;
+  background: #05609A;
+  color: #fff;
+  padding: 5px;
+}
+
+body ul#nav ul#nav li ul#nav li a ul#nav li a.active {
+  background: #B4F114;
+}
+
+body .slide-image {
+  width: 400px;
+  height: 300px;
+  border: 2px solid #05609A;
+  overflow: hidden;
+}
+
+body .slide-image .slide-image img {
+  display: none;
+}
+/*# sourceMappingURL=style.css.map */
