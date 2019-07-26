@@ -121,4 +121,29 @@ $(document).ready(function () {
 
     // The second way of achieving this is by chaining all of the elements and methods into one statement by utilizing the end() method:
     $('#news').find('#politics').css('border', '1px solid red').end().find('#finance').hide().end().find('#local').css('border', '1px solid blue');
+    // CREATING A NEWS FEEDTICKER WITH MULTIPLE EFFECTS
+    var newsArray = [
+        "Delhomme, Wallace sharp early for Browns",
+        "Bucs expect to have injured QB Freeman for opener",
+        "Report: Haynesworth likely has rhabdomyolysis",
+        "QB Orton effectively leading Broncos in preseason",
+        "Vernon Gholston not offended by set-up fight",
+        "Cubs’ Piniella to retire after Sunday",
+        "Bradley interested in Aston Villa job",
+        "Federer beats Fish for Cincinnati title",
+        "Garcia 3-hits Giants, Cardinals roll 9-0",
+        "Cano, CC power Yankees over M’s 10-0"
+    ];
+    var newsLength = newsArray.length;
+    var newsInterval = 2000;
+    $('#news-feedticker').after('<ul id="news-feed"></ul>');
+    for(i = 0; i < newsLength; i++){
+        $('#news-feed').append('<li>'+newsArray[i]+'</li>');
+    };
+    function slideHeadline(){
+        $('#news-feed li:last').clone().prependTo('#news-feed').css('display', 'none');
+        $('#news-feed li:first').fadeIn(1000).slideDown(500);
+        $('#news-feed li:last').remove();
+    };
+    setInterval(slideHeadline, newsInterval);
 })
