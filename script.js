@@ -106,4 +106,19 @@ $(document).ready(function () {
         $(this).addClass('active');
     });
     $('#nav li a').eq(0).click();
+    // ADDING DELAY TO CREATE A TIMED ANIMATION
+    $('.show-tip').hover(function(){
+        $('.tool-tip').fadeIn(900);
+    },
+    function(){
+        $('.tool-tip').delay(10000).fadeOut(900)
+    });
+    // CHAINING MULTIPLE EFFECTS TOGETHER
+    // The first is by creating three statements that each select the element and apply CSS to it:
+    $('#politics').css('border', '1px solid red');
+    $('#finance').css('display', 'none');
+    $('#local').css('border', '1px solid green');
+
+    // The second way of achieving this is by chaining all of the elements and methods into one statement by utilizing the end() method:
+    $('#news').find('#politics').css('border', '1px solid red').end().find('#finance').hide().end().find('#local').css('border', '1px solid blue');
 })
