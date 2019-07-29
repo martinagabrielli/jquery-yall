@@ -1,7 +1,7 @@
 $(document).ready(function () {
     // ADDING AND REMOVING CONTENT TO OR FROM A PAGE WITH A MOUSE CLICK
     $('#content-link').click(function() {
-        $('#content').toggle();
+        $('#content-click').toggle();
     });
     // CREATING A TOOLTIP THAT SHOWS CONTENT DURING THE HOVER EVENT
     $('.product-image img').bind({
@@ -54,9 +54,9 @@ $(document).ready(function () {
         $('.recipe').show();
     });
     // one or the other or use .toggle()
-    $('.recipe-name').bind('click', function(){
-        $('.recipe').hide();
-    });
+    // $('.recipe-name').bind('click', function(){
+    //     $('.recipe').hide();
+    // });
     // SETTING A MESSAGE TO APPEAR ONLY ONCE ON SITE USING THE SHOW METHOD AND COOKIES
     $('.special-offer').bind('click', function(){
         $('#message').show(hideMessage);
@@ -81,7 +81,7 @@ $(document).ready(function () {
     $('.advanced-search').bind('click', function(){
         $('.advanced').slideToggle();
     });
-    // BUILDING A BASIC IMAGE GALLERY WITH A FADETRANSITION
+    // BUILDING A BASIC IMAGE GALLERY WITH A FADE TRANSITION
     var slideArray = [
         "pic1.jpg",
         "pic2.jpg",
@@ -90,9 +90,9 @@ $(document).ready(function () {
         "pic5.jpg"
     ];
     var imgDir = 'img/pic';
-    $('.container').append('<div class="slide-image"></div>');
-    $('.slide-image').html('<img src="img/'+slideArray[0]+'">');
-    $('.slide-image').after('<ul id="nav"></ul>');
+    $('.container').append('<div class="slide-image-first"></div>');
+    $('.slide-image-first').html('<img src="img/'+slideArray[0]+'">');
+    $('.slide-image-first').after('<ul id="nav"></ul>');
     var slideLength = slideArray.length;
     for(i=0; i < slideLength; i++) {
         var slideText = i + 1;
@@ -100,8 +100,8 @@ $(document).ready(function () {
     };
     $('#nav li a').bind('click', function(){
         var numSlide = $(this).attr('rel');
-        $('.slide-image').html('<img src="'+imgDir + numSlide +'.jpg">');
-        $('.slide-image img').fadeIn();
+        $('.slide-image-first').html('<img src="'+imgDir + numSlide +'.jpg">');
+        $('.slide-image-first img').fadeIn();
         $('#nav li a').removeClass('active');
         $(this).addClass('active');
     });
@@ -146,4 +146,55 @@ $(document).ready(function () {
         $('#news-feed li:last').remove();
     };
     setInterval(slideHeadline, newsInterval);
+    // BUILDING AN IMAGE GALLERY WITH TEXT CAPTIONS USING ADVANCED ANIMATIONS *** not working ***
+    var slideArraySecond = ["pic1.jpg","pic2.jpg","pic3.jpg","pic4.jpg"];
+    var textArray = ["Rusty Cable.","Watch Dogs.","Plant Sink.","Urban Cowboy"];
+    var urlArray = ["http://www.google.com", "http://www.onerutter.com", "http://www.flickr.com", "http://www.facebook.com"];
+    $('.container-last').append('<div class="slide-container">');
+    $('.container-last').after('<ul id="nav-second" class="clearfix"></ul>');
+    for(i=0; i < slideArraySecond.length; i++){
+        var slideNum = i + 1;
+        $('#nav-second').append('<li><a href="#" rel="'+slideNum+'">'+slideNum+'</a></li>');
+        var slideInfo = '<div class="slide-image'+slideNum+' slides">';
+        slideInfo += '<div class="slide-text">'+slideArraySecond[i]+'</div>';
+        slideInfo += '<img src="img/pic'+slideNum+'.jpg"></div>';
+
+        $('.slide-container').append(slideInfo);
+    }
+    var slideTotal = slideArraySecond.length;
+    slideWidth = 400;
+    var slideContainer = slideWidth * slideTotal;
+    $(".slide-container").css({'width' : slideContainer});
+    $('#nav-second li a').bind('click', function(){
+        $('#nav-second li a').removeClass('active');
+        $(this).addClass('active');
+        $(".slide-text").css({
+            'top':'-100px',
+            'right': '0px'
+        });
+        $(".slide-text").stop();
+        $(".slide-text").clearQueue();
+
+        var active = $('#nav-second li a.active').attr("rel") -1;
+        var slidePos = active * slideWidth;
+        var slideNum = $('#nav-second li a.active').attr("rel");
+
+        $(".slide-container").animate({
+            left: -slidePos,
+            },1000, function(){
+                $('slide-image'+slideNum+'.slideText').addClass('textStrip').animate({
+                    top:0,
+                    left:slidePos,
+                    right:0,
+                },1000, function(){
+                $('.slide-text').delay(5000).animate({
+                    top:-100
+                },1000);
+            });
+        });
+    });
+    // SETTING ALL LINKS ON A PAGE TO OPEN IN A NEW WINDOW
+    $('#links li a').attr('target', '_blank');
+
 })
+
