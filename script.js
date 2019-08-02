@@ -205,5 +205,16 @@ $(document).ready(function () {
             'text-decoration': 'underline'
         });
     }
+    // CREATING A BASIC DROP-DOWN MENU (just change .animate for .slideDown('slow') in 1st function & .slideUp('fast') in 2nd function
+    // ADDING ADVANCED EFFECTS TO THE BASIC DROP-DOWN MENU USING ANIMATE (currently on)
+    $('#navigation li').hover(function(){
+        $(this).find('.subnav').animate({opacity: 1.0, height: 'toggle'}, 500);
+        $(this).find('a').addClass('active');
+    }, function() {
+        $(this).find('.subnav').animate({opacity: 0, height: 'toggle'}, 500);
+        $(this).find('a').removeClass('active');
+    });
+    // CREATING AN ACCORDION MENU
+
 })
 

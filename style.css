@@ -1,4 +1,4 @@
-body #top-nav ul {
+body #top-nav ul#navigation {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -7,16 +7,68 @@ body #top-nav ul {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 110px;
 }
 
-body #top-nav ul li {
+body #top-nav ul#navigation li {
   list-style: none;
+  width: 175px;
+  text-align: center;
+  position: relative;
+  height: 63px;
+  padding: 20px 5px 10px 5px;
 }
 
-body #top-nav ul li a {
+body #top-nav ul#navigation li ul.subnav {
+  background: #E7F1D2;
+  width: 175px;
+  clear: both;
+  display: none;
+  position: absolute;
+  top: 63px;
+  -moz-border-radius-bottomleft: 8px;
+  -moz-border-radius-bottomright: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+  border-radius: 8px;
+  border-left: 2px solid #998;
+  border-right: 2px solid #998;
+  border-bottom: 2px solid #998;
+}
+
+body #top-nav ul#navigation li ul.subnav li {
+  clear: both;
+  height: 40px;
+  padding: 0;
+  text-align: center;
+  margin: 0px;
+}
+
+body #top-nav ul#navigation li ul.subnav li a {
+  background: none;
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+  padding: 10px 0;
+  border: none;
+}
+
+body #top-nav ul#navigation li ul.subnav li a a:hover {
+  background: #DBF1AD;
+  font-size: 18px;
+  color: #333;
+  border: none;
+}
+
+body #top-nav ul#navigation li a {
   text-decoration: none;
   color: #000000;
   font-size: 25px;
+  display: block;
+}
+
+body #top-nav ul#navigation li a a.active {
+  border: 1px solid blue;
 }
 
 body h3 {
