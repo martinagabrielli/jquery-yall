@@ -195,6 +195,15 @@ $(document).ready(function () {
     });
     // SETTING ALL LINKS ON A PAGE TO OPEN IN A NEW WINDOW
     $('#links li a').attr('target', '_blank');
-
+    // SETTING AN ACTIVE ITEM IN YOUR NAVIGATION MENU
+    var path = location.pathname;
+    var pathArray = path.split('/');
+    var pArrLength = pathArray.length;
+    for(i=0; i<pArrLength; i++) {
+        $("a[href*='"+pathArray[i]+"']").addClass("selected").css({
+            'font-weight': 'bold',
+            'text-decoration': 'underline'
+        });
+    }
 })
 
