@@ -215,6 +215,40 @@ $(document).ready(function () {
         $(this).find('a').removeClass('active');
     });
     // CREATING AN ACCORDION MENU
-
+    $('.accordion-content').not(':first').hide();
+    $('.accordion-content:first').show();
+    $('.accordion.header:first').addClass('header-active');
+    $('.accordion-header:first').find('span').addClass('icon-active');
+    $('.accordion-header').click(function(){
+        $('.accordion-content:visible').slideUp('slow').prev().removeClass('.header-active');
+        $('icon-active:visible').removeClass('icon-active');
+        $(this).addClass('header-active').next().slideDown('slow');
+        $(this).find('span').addClass('icon-active');
+    });
+    // CREATING TABBED CONTENT
+    $('.content:first').show();
+    $('#tabs li a:first').addClass('tab-active');
+    $('#tabs li a').hover(
+        function() {
+            // mouseenter event
+            $(this).animate({left: 20}, 300, function() {
+                $(this).animate({left: 0}, 50);
+            });
+        },
+        function () {
+            // mouseleave event
+        }
+    );
+    $('ul#tabs li a').bind('click', function() {
+        var linkIndex = $('#tabs li a').index(this);
+        $('#tabs li a').removeClass('tab-active');
+        $('.content:visible').hide();
+        $('.content:eq('+linkIndex+')').show();
+        $(this).addClass('tab-active');
+        return false;
+    });
+    // STYLING THE DATA IN TABLES
+        $('tbody tr:even').css('background', '#dedede');
+        $('tbody tr:odd').css('background', '#ffffff');
 })
 

@@ -1,3 +1,19 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
 body {
     #top-nav {
         ul#navigation {
@@ -157,6 +173,100 @@ body {
             width:100%;
         }
     }
-}
 
+    // CREATING AN ACCORDION MENU
+
+    #accordion {
+    width: 225px;
+    margin: 10px 0 10px 10px;
+        .header-active { 
+            background: #48ABC3;
+        }
+        .accordion-header {
+            background: #3971AC;
+            color: #fff;
+            border-bottom: 1px solid #fff;
+            position: relative;
+            span {
+                background: url(../images/accordion_sprite.gif) no-repeat;
+                display: block;
+                position: absolute;
+                width: 11px;
+                height: 12px;
+                top: 5px;
+                left: 200px;
+                .icon-active {
+                    background: url(../images/accordion_sprite.gif) no-repeat;
+                    background-position: 0 -12px;
+                    display: block;
+                    position: absolute;
+                    width: 11px;
+                    height: 12px;
+                    top: 5px;
+                    left: 200px;
+                }
+            }
+            h3 {
+                margin: 0;
+                cursor: pointer;
+                text-indent: 10px;
+                padding: 5px 0;
+            }
+        }
+        ul.accordion-content{
+            margin:0px 0 0px 0;
+            padding:5px 5px 10px 5px;
+            list-style-type:none;
+            background:#A8D7E2;
+            li {
+                padding: 1px 0px;
+                display: block;
+                margin: 0;
+                padding: 2px 5px;
+                a {
+                    color:#D16C3A;
+                }
+            }
+        }
+    }
+    // CREATING TABBED CONTENT
+    ul#tabs {
+        list-style-type: none;
+        position: relative;
+        li {
+            float: left;
+            width: 155px;
+            text-align: center;
+            position: relative;
+            margin: 0 3px;
+            position: relative;
+            a.tab-active {
+                color: green;
+                background: #fff;
+                position: relative;
+                top: 1px;
+            }
+            a {
+                border-top: 1px solid #9B4C24;
+                border-left: 1px solid #9B4C24;
+                border-right: 1px solid #9B4C24;
+                background: #2E7D91; ;
+                padding: 10px 5px 10px 0px;
+                display: block;
+                text-decoration: none;
+                font: bold 14px “Helvetica Neue”,Arial,Helvetica,Geneva,sans-serif;
+                color: #fff;
+                position: relative;
+            }
+        }
+    } 
+    #content-container {
+           border: 1px solid #333;
+           background: #fff;
+        .content {
+            display: none;
+        }
+    }
+
+}
 
