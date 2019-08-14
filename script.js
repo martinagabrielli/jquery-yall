@@ -276,5 +276,4 @@ $(document).ready(function () {
         $('tr:contains("Clothing")').after('<tr><td colspan="4" class="special">Special Offer TODAY</td></tr>');
         // REMOVING A ROW BASED ON ITS CONTENT
         $("tr").remove(":contains('Clothing')");
-
 })
