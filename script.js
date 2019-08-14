@@ -250,5 +250,31 @@ $(document).ready(function () {
     // STYLING THE DATA IN TABLES
         $('tbody tr:even').css('background', '#dedede');
         $('tbody tr:odd').css('background', '#ffffff');
-})
+        $(document).ready(function(){
+            $('tr').hover(function() {
+                $(this).css('background', 'pink');
+            }, function() {
+                $(this).css('background', 'white');
+            });
+    });
+    // ADDING AN ADVANCED HOVER EFFECT TO ROWS
+    $('tr').hover(function (){
+        $(this).children().append('<div class="editme"><a href="">Edit Me</a></div>');
+    }, function() {
+        $('.editme').remove();
+    });
+    // MANIPULATINGTHE DATA IN TABLES
+        // ADDING A MESSAGE AFTER THE FIRST/LAST ROWS OF THE TABLE
+        $('#products tr:first').after('<tr><td colspan="4" class="special">Special Offer TODAY</td></tr>');
+        // REMOVING A ROW USING A FILTER SELECTOR
+        $('tr:last').remove();
+        // ADDING A ROW AFTER A ROW BASED ON ITS INDEX VALUE
+        $("tr:eq(5)").after('<tr><td colspan="4" class="special">Special Offer TODAY</td></tr>');
+        // REMOVING A ROW BASED ON ITS INDEX VALUE
+        $("tr:eq(1)").remove();
+        // ADDING A MESSAGE AFTER ROWS WITH SPECIFIC CONTENT
+        $('tr:contains("Clothing")').after('<tr><td colspan="4" class="special">Special Offer TODAY</td></tr>');
+        // REMOVING A ROW BASED ON ITS CONTENT
+        $("tr").remove(":contains('Clothing')");
 
+})
