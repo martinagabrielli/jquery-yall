@@ -258,23 +258,49 @@ $(document).ready(function () {
             });
     });
     // ADDING AN ADVANCED HOVER EFFECT TO ROWS
-    $('tr').hover(function (){
-        $(this).children().append('<div class="editme"><a href="">Edit Me</a></div>');
-    }, function() {
-        $('.editme').remove();
-    });
+    // $('tr').hover(function (){
+    //     $(this).children().append('<div class="editme"><a href="">Edit Me</a></div>');
+    // }, function() {
+    //     $('.editme').remove();
+    // });
+
     // MANIPULATINGTHE DATA IN TABLES
-        // ADDING A MESSAGE AFTER THE FIRST/LAST ROWS OF THE TABLE
-        $('#products tr:first').after('<tr><td colspan="4" class="special">Special Offer TODAY</td></tr>');
-        // REMOVING A ROW USING A FILTER SELECTOR
-        $('tr:last').remove();
-        // ADDING A ROW AFTER A ROW BASED ON ITS INDEX VALUE
-        $("tr:eq(5)").after('<tr><td colspan="4" class="special">Special Offer TODAY</td></tr>');
-        // REMOVING A ROW BASED ON ITS INDEX VALUE
-        $("tr:eq(1)").remove();
-        // ADDING A MESSAGE AFTER ROWS WITH SPECIFIC CONTENT
-        $('tr:contains("Clothing")').after('<tr><td colspan="4" class="special">Special Offer TODAY</td></tr>');
-        // REMOVING A ROW BASED ON ITS CONTENT
-        $("tr").remove(":contains('Clothing')");
+
+        // // ADDING A MESSAGE AFTER THE FIRST/LAST ROWS OF THE TABLE
+        // $('#products tr:first').after('<tr><td colspan="4" class="special">Special Offer TODAY</td></tr>');
+        // // REMOVING A ROW USING A FILTER SELECTOR
+        // $('tr:last').remove();
+        // // ADDING A ROW AFTER A ROW BASED ON ITS INDEX VALUE
+        // $("tr:eq(5)").after('<tr><td colspan="4" class="special">Special Offer TODAY</td></tr>');
+        // // REMOVING A ROW BASED ON ITS INDEX VALUE
+        // $("tr:eq(1)").remove();
+        // // ADDING A MESSAGE AFTER ROWS WITH SPECIFIC CONTENT
+        // $('tr:contains("Clothing")').after('<tr><td colspan="4" class="special">Special Offer TODAY</td></tr>');
+        // // REMOVING A ROW BASED ON ITS CONTENT
+        // $("tr").remove(":contains('Clothing')");
+
+    // SETTING UP TABLE PAGINATION WITH JQUERY
     
+    $('#data').after('<div id="nav"></div>');
+    var rowsShown = 4;
+    var rowsTotal = $('#data tr').length;
+    var numPages = Math.round(rowsTotal/rowsShown);
+    for(i=0; i<numPages; i++){
+        var pageNum = i + 1;
+        $('#nav').append('<a href="#" rel="'+i+'")'+pageNum+'</a>');
+    }
+    $('#data tr').hide();
+    $('#data tr:first').show();
+    $('#data tr').slice(0, rowsShown).show();
+    $('#nav a:first').addClass('active');
+
+    $('#nav a').bind('click', function(){
+        $('#nav a').removeClass('active');
+        $(this).addClass('active');
+        var currPage = $(this).attr('rel');
+        var startItem = currPage * rowsShown;
+        var endItem = startItem + rowsShown;
+        $('#data tr').css('opacity', '0.0').hide().slice(startItem, endItem).css('display','table-row').animate({opacity:1}, 300);
+    });
+
 })
